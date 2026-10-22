@@ -1,27 +1,18 @@
-import { ChevronDown } from "lucide-react";
-import { PreviewCarousel } from "@/components/preview-carousel";
-
 interface HeroSectionProps {
   /**
-   * Destination for the primary portfolio CTA button.
-   * Defaults to `#portofolio` anchor.
-   */
-  portfolioHref?: string;
-  /**
-   * Destination for the secondary consultation link.
-   * Defaults to `#konsultasi` anchor.
+   * Destination for the consultation link.
+   * Defaults to WhatsApp consultation link.
    */
   consultationHref?: string;
 }
 
 export function HeroSection({
-  portfolioHref = "#portofolio",
-  consultationHref = "#konsultasi",
+  consultationHref = "https://wa.me/?text=Halo%20Kodeari%2C%20saya%20ingin%20konsultasi%20pembuatan%20website",
 }: HeroSectionProps) {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative w-full overflow-hidden bg-white pb-24 sm:pb-32 lg:pb-36"
+      className="relative flex min-h-[calc(100vh-80px)] w-full flex-col items-center justify-center overflow-hidden bg-white px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
     >
       {/* Background Decorative Treatment: Micro-Dot Pattern & Subtle Radial Glow */}
       <div
@@ -31,13 +22,13 @@ export function HeroSection({
         {/* Micro-dot grid (1.2px dots on a 16px grid, low-contrast cool grayish-blue) */}
         <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(100,116,139,0.18)_1.2px,transparent_1.2px)] [background-size:16px_16px]" />
 
-        {/* Soft pale-blue radial glow positioned behind the website showcase */}
+        {/* Soft pale-blue radial glow */}
         <div className="absolute bottom-12 left-1/2 h-[580px] w-[1180px] max-w-[94vw] -translate-x-1/2 rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(219,234,254,0.36)_0%,rgba(239,246,255,0.16)_48%,transparent_72%)] blur-2xl" />
       </div>
 
-      {/* 1. Upper Marketing Message Area (Centered, ~68-74vh on desktop) */}
-      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center justify-center px-4 pt-16 text-center sm:px-6 sm:pt-20 md:pt-24 lg:min-h-[72vh] lg:px-8">
-        {/* Eyebrow Label (Clean typographic kicker without generic AI pill badge) */}
+      {/* Marketing Message Area (Centered) */}
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center justify-center text-center">
+        {/* Eyebrow Label */}
         <div className="hero-animate-fade-up">
           <span className="text-[11.5px] font-semibold tracking-[0.24em] uppercase text-[#667085] sm:text-xs">
             JASA PEMBUATAN WEBSITE
@@ -82,18 +73,13 @@ export function HeroSection({
           layananmu.
         </p>
 
-        {/* Primary and Secondary Action Group */}
+        {/* Primary Action Button */}
         <div className="hero-animate-fade-up-delay-3 mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4">
           <a
-            href={portfolioHref}
-            className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-[#2563EB] px-7 text-[15px] font-medium text-white shadow-xs transition-all duration-150 hover:bg-[#1D4ED8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 active:scale-[0.99] sm:w-auto"
-          >
-            Lihat Karya Kami
-          </a>
-
-          <a
             href={consultationHref}
-            className="inline-flex h-12 w-full items-center justify-center rounded-lg border border-[#E5EAF1] bg-white px-6 text-[15px] font-medium text-[#172033] shadow-xs transition-all duration-150 hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 active:scale-[0.99] sm:w-auto"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-[#2563EB] px-8 text-[15px] font-medium text-white shadow-xs transition-all duration-150 hover:bg-[#1D4ED8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 active:scale-[0.99] sm:w-auto"
           >
             Konsultasikan Bisnismu
           </a>
@@ -104,26 +90,10 @@ export function HeroSection({
           Untuk berbagai skala usaha: UMKM, bisnis ritel, hingga perusahaan.
         </div>
 
-        {/* Calm Scroll Cue */}
-        <div className="hero-animate-fade-up-delay-3 mt-10 flex flex-col items-center gap-1 text-xs text-[#8A94A6] sm:mt-12">
-          <span className="text-[10.5px] font-medium tracking-wider uppercase text-[#8A94A6]">
-            Jelajahi Pratinjau Desain
-          </span>
-          <ChevronDown className="size-3.5 text-[#8A94A6]" aria-hidden="true" />
-        </div>
-      </div>
-
-      {/* 2. Lower Area: Interactive Single Website Preview Carousel */}
-      <div
-        id="portofolio"
-        className="relative z-10 mx-auto mt-6 w-full max-w-7xl px-4 sm:px-6 lg:px-8"
-      >
-        <PreviewCarousel />
-
-        {/* Valid Navigation Targets for Header IA */}
-        <div id="layanan" className="sr-only" aria-hidden="true" />
-        <div id="tentang" className="sr-only" aria-hidden="true" />
-        <div id="konsultasi" className="sr-only" aria-hidden="true" />
+        {/* Single-Page Navigation Target Anchors */}
+        <div id="portofolio" className="sr-only" aria-hidden="true" />
+        <div id="harga" className="sr-only" aria-hidden="true" />
+        <div id="tentang-kami" className="sr-only" aria-hidden="true" />
       </div>
     </section>
   );

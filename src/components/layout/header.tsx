@@ -1,37 +1,27 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 interface HeaderProps {
   /**
    * Destination for the consultation CTA button.
-   * Defaults to `#konsultasi` anchor.
+   * Defaults to WhatsApp consultation link.
    */
   consultationHref?: string;
-  /**
-   * Destination for the Layanan link.
-   * Defaults to `#layanan` anchor.
-   */
-  servicesHref?: string;
-  /**
-   * Destination for the Portofolio link.
-   * Defaults to `#portofolio` anchor.
-   */
-  portfolioHref?: string;
-  /**
-   * Destination for the Tentang link.
-   * Defaults to `#tentang` anchor.
-   */
-  aboutHref?: string;
 }
 
+const navLinks = [
+  { label: "Layanan", href: "#layanan" },
+  { label: "Portofolio", href: "#portofolio" },
+  { label: "Harga", href: "#harga" },
+  { label: "Tentang Kami", href: "#tentang-kami" },
+];
+
 export function Header({
-  consultationHref = "#konsultasi",
-  servicesHref = "#layanan",
-  portfolioHref = "#portofolio",
-  aboutHref = "#tentang",
+  consultationHref = "https://wa.me/?text=Halo%20Kodeari%2C%20saya%20ingin%20konsultasi%20pembuatan%20website",
 }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -47,13 +37,6 @@ export function Header({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isMobileMenuOpen]);
 
-  const navLinks = [
-    { label: "Beranda", href: "/", isActive: true },
-    { label: "Layanan", href: servicesHref, isActive: false },
-    { label: "Portofolio", href: portfolioHref, isActive: false },
-    { label: "Tentang", href: aboutHref, isActive: false },
-  ];
-
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#E5EAF1] bg-white/95 backdrop-blur-xs transition-colors">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -63,50 +46,43 @@ export function Header({
           className="group flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
           aria-label="kodeari beranda"
         >
-          <span className="flex size-7 items-center justify-center rounded-lg bg-[#2563EB] text-white shadow-xs transition-transform duration-150 group-hover:scale-105">
-            <svg
-              className="size-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M7 17V7" />
-              <path d="m14 7-6 5 6 5" />
-            </svg>
-          </span>
+          <div className="relative size-8 shrink-0 overflow-hidden transition-transform duration-150 group-hover:scale-105">
+            <Image
+              src="/logo/logo-only.png"
+              alt="Logo Kodeari"
+              width={32}
+              height={32}
+              priority
+              className="size-full object-contain"
+            />
+          </div>
           <span className="text-[19px] font-bold tracking-tight text-[#172033]">
-            kodeari<span className="text-[#2563EB]">.</span>
+            Kodeari
           </span>
         </Link>
 
-        {/* Center: Desktop Navigation Links */}
+        {/* Center: Desktop Navigation Anchor Links */}
         <nav
           aria-label="Navigasi Utama"
           className="hidden items-center gap-8 md:flex"
         >
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.label}
               href={link.href}
-              className={`rounded-sm text-[14.5px] font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 ${
-                link.isActive
-                  ? "text-[#172033]"
-                  : "text-[#667085] hover:text-[#172033]"
-              }`}
+              className="rounded-sm text-[14.5px] font-medium text-[#667085] transition-colors duration-150 hover:text-[#172033] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
             >
               {link.label}
-            </Link>
+            </a>
           ))}
         </nav>
 
-        {/* Right: Desktop Primary CTA */}
+        {/* Right: Primary CTA (Desktop) */}
         <div className="hidden items-center md:flex">
           <a
             href={consultationHref}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex h-10 items-center justify-center rounded-lg bg-[#2563EB] px-5 text-[14px] font-medium text-white shadow-xs transition-all duration-150 hover:bg-[#1D4ED8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 active:scale-[0.99]"
           >
             Konsultasi
@@ -130,7 +106,7 @@ export function Header({
         </button>
       </div>
 
-      {/* Mobile Navigation Drawer / Dropdown */}
+      {/* Mobile Navigation Drawer */}
       {isMobileMenuOpen && (
         <nav
           id="mobile-navigation"
@@ -139,23 +115,21 @@ export function Header({
         >
           <div className="flex flex-col gap-1">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex h-11 items-center rounded-lg px-3 text-[15px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 ${
-                  link.isActive
-                    ? "bg-slate-50 font-semibold text-[#172033]"
-                    : "text-[#667085] hover:bg-slate-50 hover:text-[#172033]"
-                }`}
+                className="flex h-11 items-center rounded-lg px-3 text-[15px] font-medium text-[#667085] transition-colors hover:bg-slate-50 hover:text-[#172033] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
 
             <div className="mt-3 border-t border-slate-100 pt-3">
               <a
                 href={consultationHref}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="flex h-11 w-full items-center justify-center rounded-lg bg-[#2563EB] px-4 text-[15px] font-medium text-white shadow-xs transition-colors hover:bg-[#1D4ED8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
               >

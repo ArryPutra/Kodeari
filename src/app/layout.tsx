@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "kodeari — Jasa Pembuatan Website Profesional & Profil Usaha",
+  title: "Kodeari — Jasa Pembuatan Website Profesional & Profil Usaha",
   description:
     "Website yang dirancang dengan cermat untuk memperkuat citra bisnis, menampilkan keunggulanmu, dan membuat pelanggan lebih mudah mengenal layananmu.",
 };
