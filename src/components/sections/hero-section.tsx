@@ -93,10 +93,6 @@ export function HeroSection({
         <div className="hero-animate-fade-up-delay-3 mt-4 text-xs font-normal text-[#667085]">
           Untuk berbagai skala usaha: UMKM, bisnis ritel, hingga perusahaan.
         </div>
-
-        {/* Single-Page Navigation Target Anchors */}
-        <div id="harga" className="sr-only" aria-hidden="true" />
-        <div id="tentang-kami" className="sr-only" aria-hidden="true" />
       </div>
     </section>
   );

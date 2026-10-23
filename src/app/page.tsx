@@ -1,8 +1,10 @@
 import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ServicesSection } from "@/components/sections/services-section";
 import { PortfolioSection } from "@/components/sections/portfolio-section";
 import { PricingSection } from "@/components/sections/pricing-section";
+import { AboutSection } from "@/components/sections/about-section";
 
 export default function Home() {
   return (
@@ -13,7 +15,9 @@ export default function Home() {
         <ServicesSection />
         <PortfolioSection />
         <PricingSection />
+        <AboutSection />
       </main>
+      <Footer />
     </div>
   );
 }
