@@ -16,15 +16,25 @@ export const metadata: Metadata = {
   title: "Kodeari — Jasa Pembuatan Website Profesional & Profil Usaha",
   description:
     "Website yang dirancang dengan cermat untuk memperkuat citra bisnis, menampilkan keunggulanmu, dan membuat pelanggan lebih mudah mengenal layananmu.",
+  icons: {
+    icon: "/logo/logo-only.png",
+    shortcut: "/logo/logo-only.png",
+    apple: "/logo/logo-only.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="id"
       className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <noscript>
+          <style>{`.scroll-reveal { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }

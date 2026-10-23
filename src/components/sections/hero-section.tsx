@@ -1,3 +1,6 @@
+
+import { ArrowRight } from "lucide-react";
+
 interface HeroSectionProps {
   /**
    * Destination for the consultation link.
@@ -79,9 +82,10 @@ export function HeroSection({
             href={consultationHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-[#2563EB] px-8 text-[15px] font-medium text-white shadow-xs transition-all duration-150 hover:bg-[#1D4ED8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 active:scale-[0.99] sm:w-auto"
+            className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#2563EB] px-8 text-[15px] font-medium text-white shadow-xs transition-all duration-150 hover:bg-[#1D4ED8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 active:scale-[0.99] sm:w-auto"
           >
-            Konsultasikan Bisnismu
+            <span>Konsultasikan Bisnismu</span>
+            <ArrowRight className="size-4.5 transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true" />
           </a>
         </div>
 
@@ -91,7 +95,6 @@ export function HeroSection({
         </div>
 
         {/* Single-Page Navigation Target Anchors */}
-        <div id="portofolio" className="sr-only" aria-hidden="true" />
         <div id="harga" className="sr-only" aria-hidden="true" />
         <div id="tentang-kami" className="sr-only" aria-hidden="true" />
       </div>

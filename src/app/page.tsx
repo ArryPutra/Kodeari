@@ -1,6 +1,8 @@
 import { Header } from "@/components/layout/header";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ServicesSection } from "@/components/sections/services-section";
+import { PortfolioSection } from "@/components/sections/portfolio-section";
+import { PricingSection } from "@/components/sections/pricing-section";
 
 export default function Home() {
   return (
@@ -9,6 +11,8 @@ export default function Home() {
       <main className="flex-1">
         <HeroSection />
         <ServicesSection />
+        <PortfolioSection />
+        <PricingSection />
       </main>
     </div>
   );

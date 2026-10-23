@@ -213,40 +213,67 @@
   animation: heroBrushStroke 850ms cubic-bezier(0.65, 0, 0.35, 1) 650ms forwards;
 }
 
-@keyframes serviceFadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Scroll-Triggered Reveal System */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: opacity, transform;
+  transition-property: opacity, transform, border-color, box-shadow, background-color !important;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.service-reveal {
-  animation: serviceFadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+.scroll-reveal-active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
-.service-reveal-delay-1 {
-  animation: serviceFadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both;
+/* Durations */
+.reveal-duration-heading {
+  transition-duration: 800ms !important;
 }
 
-.service-reveal-delay-2 {
-  animation: serviceFadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 160ms both;
+.reveal-duration-body {
+  transition-duration: 750ms !important;
 }
 
-.service-reveal-delay-3 {
-  animation: serviceFadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 240ms both;
+.reveal-duration-card {
+  transition-duration: 800ms !important;
 }
 
-.service-reveal-delay-4 {
-  animation: serviceFadeInUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 320ms both;
+.reveal-duration-preview {
+  transition-duration: 900ms !important;
+}
+
+/* Staggers */
+.reveal-delay-0 {
+  transition-delay: 0ms !important;
+}
+
+.reveal-delay-1 {
+  transition-delay: 140ms !important;
+}
+
+.reveal-delay-2 {
+  transition-delay: 280ms !important;
+}
+
+.reveal-delay-3 {
+  transition-delay: 420ms !important;
+}
+
+.reveal-delay-4 {
+  transition-delay: 560ms !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto !important;
+  }
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
   }
   .hero-animate-fade-up,
   .hero-animate-fade-up-delay-1,
@@ -254,12 +281,7 @@
   .hero-animate-fade-up-delay-3,
   .hero-animate-mockup,
   .hero-float-subtle-left,
-  .hero-float-subtle-right,
-  .service-reveal,
-  .service-reveal-delay-1,
-  .service-reveal-delay-2,
-  .service-reveal-delay-3,
-  .service-reveal-delay-4 {
+  .hero-float-subtle-right {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Building2,
   MousePointerClick,
@@ -6,6 +8,7 @@ import {
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
+import { useInView } from "@/lib/use-in-view";
 
 interface ServiceItem {
   number: string;
@@ -55,6 +58,133 @@ const services: ServiceItem[] = [
   },
 ];
 
+function ServiceCardItem({
+  service,
+  index,
+}: {
+  service: ServiceItem;
+  index: number;
+}) {
+  const [cardRef, cardInView] = useInView<HTMLDivElement>({
+    threshold: 0.12,
+    rootMargin: "0px 0px -8% 0px",
+    delay: index % 2 === 0 ? 500 : 600,
+  });
+
+  const Icon = service.icon;
+  const delayClass = index % 2 === 0 ? "reveal-delay-0" : "reveal-delay-1";
+
+  return (
+    <div
+      ref={cardRef}
+      className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#E5EAF1] bg-white p-7 shadow-xs hover:border-[#2563EB]/40 hover:shadow-[0_12px_28px_-8px_rgba(23,32,51,0.06)] sm:p-8 scroll-reveal reveal-duration-card ${delayClass} ${
+        cardInView ? "scroll-reveal-active" : ""
+      }`}
+    >
+      {/* Subtle Decorative Detail in Background Corner */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-4 right-4 text-[#2563EB] opacity-15 transition-all duration-200 ease-out group-hover:scale-105 group-hover:opacity-35"
+      >
+        {service.graphicType === "architectural" && (
+          <svg
+            width="54"
+            height="54"
+            viewBox="0 0 54 54"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.2"
+          >
+            <rect x="6" y="6" width="42" height="42" rx="4" />
+            <line x1="6" y1="20" x2="48" y2="20" />
+            <line x1="20" y1="6" x2="20" y2="48" />
+            <circle cx="20" cy="20" r="2.5" fill="currentColor" />
+          </svg>
+        )}
+
+        {service.graphicType === "focus" && (
+          <svg
+            width="54"
+            height="54"
+            viewBox="0 0 54 54"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.2"
+          >
+            <line x1="10" y1="14" x2="44" y2="14" strokeWidth="2" />
+            <line x1="10" y1="23" x2="36" y2="23" />
+            <line x1="10" y1="31" x2="30" y2="31" />
+            <line x1="10" y1="40" x2="22" y2="40" strokeDasharray="3 3" />
+            <circle cx="41" cy="36" r="5" strokeWidth="1.5" />
+            <circle cx="41" cy="36" r="1.5" fill="currentColor" />
+          </svg>
+        )}
+
+        {service.graphicType === "catalog" && (
+          <svg
+            width="54"
+            height="54"
+            viewBox="0 0 54 54"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.2"
+          >
+            <rect x="8" y="8" width="16" height="16" rx="3" />
+            <rect x="30" y="8" width="16" height="16" rx="3" />
+            <rect x="8" y="30" width="16" height="16" rx="3" />
+            <rect x="30" y="30" width="16" height="16" rx="3" strokeDasharray="2 2" />
+          </svg>
+        )}
+
+        {service.graphicType === "modular" && (
+          <svg
+            width="54"
+            height="54"
+            viewBox="0 0 54 54"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.2"
+          >
+            <rect x="7" y="7" width="40" height="40" rx="4" />
+            <line x1="7" y1="18" x2="47" y2="18" />
+            <line x1="19" y1="18" x2="19" y2="47" />
+            <rect x="25" y="24" width="16" height="8" rx="2" fill="currentColor" fillOpacity="0.15" />
+            <rect x="25" y="35" width="16" height="6" rx="2" />
+          </svg>
+        )}
+      </div>
+
+      <div>
+        {/* Top Bar: Icon container on left, Number on right */}
+        <div className="flex items-center justify-between">
+          <div className="flex size-11 items-center justify-center rounded-xl bg-[#EFF6FF] text-[#2563EB] shadow-2xs transition-transform duration-200 ease-out group-hover:-translate-y-0.5 sm:size-12">
+            <Icon className="size-5 sm:size-5.5" aria-hidden="true" />
+          </div>
+
+          <span className="font-mono text-xs font-semibold tracking-wider text-[#8A94A6]">
+            {service.number}
+          </span>
+        </div>
+
+        {/* Supporting Label (Uppercase kicker) */}
+        <div className="mt-6 text-[10.5px] font-semibold tracking-[0.16em] uppercase text-[#2563EB]/90 sm:text-[11px]">
+          {service.label}
+        </div>
+
+        {/* Service Title */}
+        <h3 className="mt-1.5 text-xl font-bold tracking-tight text-[#172033] transition-colors duration-200 group-hover:text-[#2563EB] sm:text-[22px]">
+          {service.title}
+        </h3>
+
+        {/* Concise Description */}
+        <p className="mt-2.5 text-sm leading-relaxed text-[#667085] sm:text-[15px]">
+          {service.description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 interface ServicesSectionProps {
   /**
    * Destination for the consultation button.
@@ -66,6 +196,9 @@ interface ServicesSectionProps {
 export function ServicesSection({
   consultationHref = "https://wa.me/?text=Halo%20Kodeari%2C%20saya%20ingin%20konsultasi%20pembuatan%20website",
 }: ServicesSectionProps) {
+  const [introRef, introInView] = useInView({ threshold: 0.15, delay: 500 });
+  const [ctaRef, ctaInView] = useInView({ threshold: 0.15, delay: 600 });
+
   return (
     <section
       id="layanan"
@@ -74,17 +207,27 @@ export function ServicesSection({
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Introduction: Editorial, Left-Aligned */}
-        <div className="max-w-3xl service-reveal">
-          <div className="text-[11.5px] font-semibold tracking-[0.24em] uppercase text-[#667085] sm:text-xs">
+        <div ref={introRef} className="max-w-3xl">
+          <div
+            className={`text-[11.5px] font-semibold tracking-[0.24em] uppercase text-[#667085] sm:text-xs scroll-reveal reveal-duration-heading ${
+              introInView ? "scroll-reveal-active" : ""
+            }`}
+          >
             LAYANAN KODEARI
           </div>
           <h2
             id="services-heading"
-            className="mt-3 text-[32px] font-bold leading-[1.12] tracking-[-0.03em] text-[#172033] sm:text-[40px] lg:text-[46px]"
+            className={`mt-3 text-[32px] font-bold leading-[1.12] tracking-[-0.03em] text-[#172033] sm:text-[40px] lg:text-[46px] scroll-reveal reveal-duration-heading reveal-delay-1 ${
+              introInView ? "scroll-reveal-active" : ""
+            }`}
           >
             Website yang Tepat untuk Tujuan Bisnismu.
           </h2>
-          <p className="mt-4 text-base leading-[1.7] text-[#667085] sm:text-[17px]">
+          <p
+            className={`mt-4 text-base leading-[1.7] text-[#667085] sm:text-[17px] scroll-reveal reveal-duration-body reveal-delay-2 ${
+              introInView ? "scroll-reveal-active" : ""
+            }`}
+          >
             Dari memperkenalkan bisnis hingga membangun pengalaman digital yang
             lebih lengkap, kami membantu mewujudkan website sesuai kebutuhanmu.
           </p>
@@ -92,129 +235,22 @@ export function ServicesSection({
 
         {/* Four Service Cards: 2-column by 2-row on Desktop */}
         <div className="mt-12 grid grid-cols-1 gap-6 sm:mt-16 md:grid-cols-2 lg:gap-8">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            const delayClass =
-              index === 0
-                ? "service-reveal-delay-1"
-                : index === 1
-                  ? "service-reveal-delay-2"
-                  : index === 2
-                    ? "service-reveal-delay-3"
-                    : "service-reveal-delay-4";
-
-            return (
-              <div
-                key={service.number}
-                className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#E5EAF1] bg-white p-7 shadow-xs transition-all duration-200 ease-out hover:border-[#2563EB]/40 hover:shadow-[0_12px_28px_-8px_rgba(23,32,51,0.06)] sm:p-8 ${delayClass}`}
-              >
-                {/* Subtle Decorative Detail in Background Corner */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute top-4 right-4 text-[#2563EB] opacity-15 transition-all duration-200 ease-out group-hover:scale-105 group-hover:opacity-35"
-                >
-                  {service.graphicType === "architectural" && (
-                    <svg
-                      width="54"
-                      height="54"
-                      viewBox="0 0 54 54"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                    >
-                      <rect x="6" y="6" width="42" height="42" rx="4" />
-                      <line x1="6" y1="20" x2="48" y2="20" />
-                      <line x1="20" y1="6" x2="20" y2="48" />
-                      <circle cx="20" cy="20" r="2.5" fill="currentColor" />
-                    </svg>
-                  )}
-
-                  {service.graphicType === "focus" && (
-                    <svg
-                      width="54"
-                      height="54"
-                      viewBox="0 0 54 54"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                    >
-                      <line x1="10" y1="14" x2="44" y2="14" strokeWidth="2" />
-                      <line x1="10" y1="23" x2="36" y2="23" />
-                      <line x1="10" y1="31" x2="30" y2="31" />
-                      <line x1="10" y1="40" x2="22" y2="40" strokeDasharray="3 3" />
-                      <circle cx="41" cy="36" r="5" strokeWidth="1.5" />
-                      <circle cx="41" cy="36" r="1.5" fill="currentColor" />
-                    </svg>
-                  )}
-
-                  {service.graphicType === "catalog" && (
-                    <svg
-                      width="54"
-                      height="54"
-                      viewBox="0 0 54 54"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                    >
-                      <rect x="8" y="8" width="16" height="16" rx="3" />
-                      <rect x="30" y="8" width="16" height="16" rx="3" />
-                      <rect x="8" y="30" width="16" height="16" rx="3" />
-                      <rect x="30" y="30" width="16" height="16" rx="3" strokeDasharray="2 2" />
-                    </svg>
-                  )}
-
-                  {service.graphicType === "modular" && (
-                    <svg
-                      width="54"
-                      height="54"
-                      viewBox="0 0 54 54"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                    >
-                      <rect x="7" y="7" width="40" height="40" rx="4" />
-                      <line x1="7" y1="18" x2="47" y2="18" />
-                      <line x1="19" y1="18" x2="19" y2="47" />
-                      <rect x="25" y="24" width="16" height="8" rx="2" fill="currentColor" fillOpacity="0.15" />
-                      <rect x="25" y="35" width="16" height="6" rx="2" />
-                    </svg>
-                  )}
-                </div>
-
-                <div>
-                  {/* Top Bar: Icon container on left, Number on right */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex size-11 items-center justify-center rounded-xl bg-[#EFF6FF] text-[#2563EB] shadow-2xs transition-transform duration-200 ease-out group-hover:-translate-y-0.5 sm:size-12">
-                      <Icon className="size-5 sm:size-5.5" aria-hidden="true" />
-                    </div>
-
-                    <span className="font-mono text-xs font-semibold tracking-wider text-[#8A94A6]">
-                      {service.number}
-                    </span>
-                  </div>
-
-                  {/* Supporting Label (Uppercase kicker) */}
-                  <div className="mt-6 text-[10.5px] font-semibold tracking-[0.16em] uppercase text-[#2563EB]/90 sm:text-[11px]">
-                    {service.label}
-                  </div>
-
-                  {/* Service Title */}
-                  <h3 className="mt-1.5 text-xl font-bold tracking-tight text-[#172033] transition-colors duration-200 group-hover:text-[#2563EB] sm:text-[22px]">
-                    {service.title}
-                  </h3>
-
-                  {/* Concise Description */}
-                  <p className="mt-2.5 text-sm leading-relaxed text-[#667085] sm:text-[15px]">
-                    {service.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+          {services.map((service, index) => (
+            <ServiceCardItem
+              key={service.number}
+              service={service}
+              index={index}
+            />
+          ))}
         </div>
 
         {/* Shared Consultation CTA Banner with Micro-Dot Pattern & Interface Illustration */}
-        <div className="relative mt-16 overflow-hidden rounded-2xl border border-[#E5EAF1] bg-[#FAFBFC] p-7 shadow-xs sm:mt-20 sm:p-9 lg:mt-24 lg:p-11">
+        <div
+          ref={ctaRef}
+          className={`relative mt-16 overflow-hidden rounded-2xl border border-[#E5EAF1] bg-[#FAFBFC] p-7 shadow-xs sm:mt-20 sm:p-9 lg:mt-24 lg:p-11 scroll-reveal reveal-duration-card ${
+            ctaInView ? "scroll-reveal-active" : ""
+          }`}
+        >
           {/* Background Treatment: Micro-Dot Pattern & Soft Radial Glow */}
           <div
             className="pointer-events-none absolute inset-0 select-none overflow-hidden"
