@@ -53,6 +53,22 @@ const portfolioProjects: PortfolioProject[] = [
     imageAlt:
       "Pratinjau visual website profil bisnis kontraktor Arta Konstruksi",
   },
+  {
+    id: "ruang-kayu",
+    title: "Ruang Kayu",
+    category: "Katalog Produk",
+    domain: "ruang-kayu-phi.vercel.app",
+    demoUrl: "https://ruang-kayu-phi.vercel.app",
+    isConcept: false,
+    headline: "Furnitur Berkualitas untuk Ruang yang Lebih Nyaman.",
+    purpose:
+      "Website katalog produk furnitur dan dekorasi rumah dengan penataan kategori terstruktur serta integrasi pemesanan langsung via WhatsApp.",
+    description:
+      "Memudahkan pelanggan mengeksplorasi koleksi furnitur berkualitas mulai dari kursi, meja, hingga penyimpanan dengan tampilan modern, estetik, dan informatif.",
+    imageSrc: "/images/ruang-kayu-mockup.png",
+    imageAlt:
+      "Pratinjau visual website katalog produk furnitur Ruang Kayu",
+  },
 ];
 
 function PortfolioCardItem({
