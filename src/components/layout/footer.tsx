@@ -30,7 +30,7 @@ const navLinks = [
   { label: "Layanan", href: "#layanan" },
   { label: "Portofolio", href: "#portofolio" },
   { label: "Harga", href: "#harga" },
-  { label: "Tentang Kami", href: "#tentang-kami" },
+  { label: "Cara Kerja", href: "#cara-kerja" },
 ];
 
 const serviceLinks = [

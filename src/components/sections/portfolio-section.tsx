@@ -69,6 +69,22 @@ const portfolioProjects: PortfolioProject[] = [
     imageAlt:
       "Pratinjau visual website katalog produk furnitur Ruang Kayu",
   },
+  {
+    id: "sinar-task",
+    title: "Sinar Task",
+    category: "Custom",
+    domain: "sinar-task.vercel.app",
+    demoUrl: "https://sinar-task.vercel.app",
+    isConcept: false,
+    headline: "Platform Aplikasi Web Untuk Manajemen Tugas dan Pekerjaan.",
+    purpose:
+      "Website untuk mengelola penugasan, memantau progres harian berbasis lokasi, dan meninjau laporan pekerjaan karyawan secara terstruktur dan transparan.",
+    description:
+      "Memungkinkan delegasi tugas yang efisien, pelacakan progres harian berbasis lokasi, dan alur peninjauan laporan yang transparan antara admin dan pelaksana.",
+    imageSrc: "/images/sinar-task-mockup.png",
+    imageAlt:
+      "Pratinjau visual website aplikasi web untuk manajemen task dan pekerjaan",
+  },
 ];
 
 function PortfolioCardItem({
