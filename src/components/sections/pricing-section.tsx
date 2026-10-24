@@ -29,7 +29,7 @@ const plans: PricingPlan[] = [
     id: "starter",
     name: "Starter",
     tagline: "Untuk bisnis yang membutuhkan website profil profesional.",
-    price: "Rp 389.000",
+    price: "Rp 439.000",
     priceNote: null,
     estimate: "2-3 hari kerja",
     ctaLabel: "Pilih Starter",
@@ -66,7 +66,7 @@ const plans: PricingPlan[] = [
       "Antarmuka dashboard yang mudah digunakan",
     ],
     exclusions: [
-      "Tidak termasuk login pelanggan, multi-role kompleks, atau fitur transaksi kecuali disepakati terpisah",
+      "Tidak multi-role kompleks dan fitur transaksi kecuali disepakati terpisah",
     ],
   },
   {

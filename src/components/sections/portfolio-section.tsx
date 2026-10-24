@@ -38,49 +38,20 @@ const CATEGORIES: PortfolioCategory[] = [
 
 const portfolioProjects: PortfolioProject[] = [
   {
-    id: "nusa-studio",
-    title: "Nusa Studio",
+    id: "arta-konstruksi",
+    title: "Arta Konstruksi",
     category: "Profil Bisnis",
-    domain: "nusastudio.id",
-    demoUrl: "https://nusastudio.id",
-    isConcept: true,
-    headline: "Mengenal Bisnis Kami Lebih Dekat.",
+    domain: "arta-kontruksi.vercel.app",
+    demoUrl: "https://arta-kontruksi.vercel.app",
+    isConcept: false,
+    headline: "Jasa Kontraktor & Renovasi Bangunan Terpercaya.",
     purpose:
-      "Website profil bisnis yang dirancang untuk memperkuat kredibilitas korporat, memaparkan kapabilitas layanan secara terstruktur, dan memudahkan calon klien menjangkau konsultasi profesional.",
+      "Website profil bisnis jasa kontraktor yang dirancang profesional untuk memaparkan layanan bangun baru, renovasi, interior, dan transparansi estimasi RAB bagi calon klien.",
     description:
-      "Menyediakan solusi terintegrasi dan pendampingan profesional untuk mendukung kelancaran operasional serta pertumbuhan bisnis Anda secara terukur.",
-    imageSrc: "/images/sample-business.jpg",
-    imageAlt: "Pratinjau visual konsep desain website profil bisnis profesional Nusa Studio",
-  },
-  {
-    id: "kedai-kopi-roti",
-    title: "Kedai Kopi & Roti",
-    category: "Landing Page",
-    domain: "kedaikopiroti.id",
-    demoUrl: "https://kedaikopiroti.id",
-    isConcept: true,
-    headline: "Kopi Pilihan & Roti Hangat Setiap Hari.",
-    purpose:
-      "Landing page promosi yang dirancang fokus menampilkan sajian unggulan, atmosfer kedai, jam operasional, dan ajakan reservasi meja secara langsung.",
-    description:
-      "Menghadirkan racikan biji kopi lokal pilihan dipadukan dengan pastry artisan segar langsung dari oven untuk pengalaman berkunjung yang berkesan.",
-    imageSrc: "/images/sample-retail.jpg",
-    imageAlt: "Pratinjau visual konsep desain landing page kedai kopi dan bakery artisan Kedai Kopi & Roti",
-  },
-  {
-    id: "ruang-selaras",
-    title: "Ruang Selaras",
-    category: "Profil Bisnis",
-    domain: "ruangselaras.id",
-    demoUrl: "https://ruangselaras.id",
-    isConcept: true,
-    headline: "Membangun Ruang Usaha & Hunian Berkarakter.",
-    purpose:
-      "Website profil studio arsitektur dan interior yang menampilkan kurasi karya ruang komersial, filosofi material alami, serta estimasi alur proyek yang jelas.",
-    description:
-      "Membantu pemilik bisnis dan hunian mewujudkan tempat yang fungsional dan estetis dengan pendekatan material alami yang berkelanjutan.",
-    imageSrc: "/images/sample-studio.jpg",
-    imageAlt: "Pratinjau visual konsep desain website studio arsitektur dan interior Ruang Selaras",
+      "Menghadirkan perencanaan anggaran transparan, spesifikasi material jelas, dan pendampingan konstruksi terukur dari gambar kerja hingga serah terima.",
+    imageSrc: "/images/arta-konstruksi-mockup.png",
+    imageAlt:
+      "Pratinjau visual website profil bisnis kontraktor Arta Konstruksi",
   },
 ];
 
@@ -135,15 +106,15 @@ function PortfolioCardItem({
         </div>
       </div>
 
-      {/* Compact Landscape Website Preview */}
-      <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-slate-100">
+      {/* 16:9 Responsive Website Preview */}
+      <div className="relative aspect-video w-full overflow-hidden bg-slate-100">
         <Image
           src={project.imageSrc}
           alt={project.imageAlt}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           priority={index === 0}
-          className="object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02]"
+          className="object-cover object-top transition-transform duration-200 ease-out group-hover:scale-[1.02]"
         />
       </div>
 
@@ -156,7 +127,7 @@ function PortfolioCardItem({
               {project.category}
             </span>
             <span className="rounded-full border border-slate-200/80 bg-slate-50 px-2 py-0.5 text-[10.5px] font-medium text-[#64748B]">
-              Konsep Desain
+              {project.isConcept ? "Konsep Desain" : "Website Live"}
             </span>
           </div>
 
