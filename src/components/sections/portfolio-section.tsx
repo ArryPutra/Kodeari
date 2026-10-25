@@ -54,6 +54,22 @@ const portfolioProjects: PortfolioProject[] = [
       "Pratinjau visual website profil bisnis kontraktor Arta Konstruksi",
   },
   {
+    id: "dapur-warisan-ibu",
+    title: "Dapur Warisan Ibu",
+    category: "Landing Page",
+    domain: "dapur-warisan-ibu.vercel.app",
+    demoUrl: "https://dapur-warisan-ibu.vercel.app",
+    isConcept: false,
+    headline: "Masakan Rumahan Bumbu Medok, Siap Makan di Tempat atau Antar Katering.",
+    purpose:
+      "Landing page kuliner hangat dengan buku menu digital dan kalkulator katering interaktif yang menghitung estimasi harga otomatis lalu terhubung langsung ke WhatsApp Admin.",
+    description:
+      "Menyajikan navigasi menu andalan, perhitungan kalkulator katering instan, dan integrasi WhatsApp Admin untuk pemesanan nasi kotak serta acara keluarga.",
+    imageSrc: "/images/dapur-warisan-ibu.png",
+    imageAlt:
+      "Pratinjau visual landing page kuliner hangat dan katering Dapur Warisan Ibu",
+  },
+  {
     id: "ruang-kayu",
     title: "Ruang Kayu",
     category: "Katalog Produk",
