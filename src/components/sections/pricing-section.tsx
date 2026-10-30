@@ -13,6 +13,7 @@ interface PricingPlan {
   id: string;
   name: string;
   tagline: string;
+  originalPrice?: string | null;
   price: string;
   priceNote: string | null;
   /** Estimasi pengerjaan yang ditampilkan di bagian bawah card. */
@@ -29,6 +30,7 @@ const plans: PricingPlan[] = [
     id: "starter",
     name: "Starter",
     tagline: "Untuk bisnis yang membutuhkan website profil profesional.",
+    originalPrice: "Rp 539.000",
     price: "Rp 439.000",
     priceNote: null,
     estimate: "2-3 hari kerja",
@@ -51,7 +53,8 @@ const plans: PricingPlan[] = [
     id: "professional",
     name: "Professional",
     tagline: "Untuk bisnis yang ingin mengelola konten website sendiri.",
-    price: "Rp 749.000",
+    originalPrice: "Rp 839.000",
+    price: "Rp 739.000",
     priceNote: null,
     estimate: "4-7 hari kerja",
     ctaLabel: "Pilih Professional",
@@ -73,6 +76,7 @@ const plans: PricingPlan[] = [
     id: "custom",
     name: "Custom",
     tagline: "Untuk kebutuhan website dengan fitur khusus.",
+    originalPrice: null,
     price: "Konsultasi",
     priceNote: "Harga dan estimasi waktu ditentukan setelah konsultasi.",
     estimate: "Sesuai kompleksitas proyek",
@@ -143,8 +147,16 @@ function PlanCard({ plan, index }: { plan: PricingPlan; index: number }) {
 
         {/* Harga */}
         <div className="mt-6 border-t border-[#F1F5F9] pt-6">
-          <div className="text-2xl font-bold tracking-tight text-[#172033] sm:text-3xl">
-            {plan.price}
+          <div className="flex flex-col gap-1">
+            {plan.originalPrice && (
+              <span className="text-base font-normal italic text-[#94A3B8] line-through decoration-[#EF4444] decoration-2">
+                <span className="sr-only">Harga sebelumnya: </span>
+                {plan.originalPrice}
+              </span>
+            )}
+            <div className="text-2xl font-bold tracking-tight text-[#172033] sm:text-3xl">
+              {plan.price}
+            </div>
           </div>
           {plan.priceNote && (
             <p className="mt-1.5 text-[12.5px] leading-relaxed text-[#667085]">
@@ -307,7 +319,7 @@ export function PricingSection() {
                   Domain Gratis Tahun Pertama
                 </p>
                 <p className="mt-0.5 text-[12.5px] leading-relaxed text-[#667085]">
-                  Pilih .com atau .id sesuai ketentuan paket.
+                  Pilih .com sesuai ketentuan paket.
                 </p>
               </div>
             </div>
