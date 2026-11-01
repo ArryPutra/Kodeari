@@ -1,8 +1,8 @@
 "use client";
 
+import { ArrowRight, ArrowUpRight, FolderKanban, Lock } from "lucide-react";
 import Image from "next/image";
 import { useMemo, useState } from "react";
-import { ArrowRight, ArrowUpRight, FolderKanban, Lock } from "lucide-react";
 
 import { useInView } from "@/lib/use-in-view";
 
@@ -52,6 +52,22 @@ const portfolioProjects: PortfolioProject[] = [
     imageSrc: "/images/arta-konstruksi-mockup.png",
     imageAlt:
       "Pratinjau visual website profil bisnis kontraktor Arta Konstruksi",
+  },
+  {
+    id: "senyum-sehat-dental",
+    title: "Senyum Sehat Dental",
+    category: "Profil Bisnis",
+    domain: "senyumsehatdental.vercel.app",
+    demoUrl: "https://contoh-klinik-gigi.vercel.app",
+    isConcept: false,
+    headline: "Klinik Gigi Modern untuk Pemeriksaan dan Perawatan Harian.",
+    purpose:
+      "Website profil klinik gigi modern yang menampilkan layanan, profil klinik, fasilitas, dan informasi kontak untuk memudahkan calon pasien mengenal klinik.",
+    description:
+      "Website profil klinik gigi modern yang menyajikan informasi layanan perawatan gigi, profil klinik, serta fasilitas dan kontak untuk memudahkan calon pasien mengenal klinik dan mendapatkan informasi sebelum melakukan kunjungan.",
+    imageSrc: "/images/klinik-gigi-mockup.png",
+    imageAlt:
+      "Pratinjau visual website profil klinik gigi modern Senyum Sehat Dental",
   },
   {
     id: "dapur-warisan-ibu",
@@ -129,9 +145,8 @@ function PortfolioCardItem({
   return (
     <article
       ref={cardRef}
-      className={`group flex flex-col overflow-hidden rounded-xl border border-[#E5EAF1] bg-white shadow-xs transition-all duration-200 ease-out hover:border-slate-300 hover:shadow-[0_12px_28px_-8px_rgba(23,32,51,0.08)] sm:rounded-2xl scroll-reveal reveal-duration-card ${delayClass} ${
-        cardInView ? "scroll-reveal-active" : ""
-      }`}
+      className={`group flex flex-col overflow-hidden rounded-xl border border-[#E5EAF1] bg-white shadow-xs transition-all duration-200 ease-out hover:border-slate-300 hover:shadow-[0_12px_28px_-8px_rgba(23,32,51,0.08)] sm:rounded-2xl scroll-reveal reveal-duration-card ${delayClass} ${cardInView ? "scroll-reveal-active" : ""
+        }`}
     >
       {/* Browser Mockup Chrome Header */}
       <div className="flex h-8.5 items-center justify-between border-b border-[#E5EAF1] bg-[#F8FAFC] px-3.5">
@@ -235,24 +250,21 @@ export function PortfolioSection() {
         {/* Section Introduction: Editorial, Bold, and Confident */}
         <div ref={introRef} className="max-w-3xl">
           <div
-            className={`text-[11.5px] font-semibold tracking-[0.24em] uppercase text-[#667085] sm:text-xs scroll-reveal reveal-duration-heading ${
-              introInView ? "scroll-reveal-active" : ""
-            }`}
+            className={`text-[11.5px] font-semibold tracking-[0.24em] uppercase text-[#667085] sm:text-xs scroll-reveal reveal-duration-heading ${introInView ? "scroll-reveal-active" : ""
+              }`}
           >
             PORTOFOLIO KODEARI
           </div>
           <h2
             id="portfolio-heading"
-            className={`mt-4 text-3xl font-bold tracking-[-0.03em] text-[#172033] sm:text-4xl lg:text-[44px] sm:leading-[1.15] scroll-reveal reveal-duration-heading reveal-delay-1 ${
-              introInView ? "scroll-reveal-active" : ""
-            }`}
+            className={`mt-4 text-3xl font-bold tracking-[-0.03em] text-[#172033] sm:text-4xl lg:text-[44px] sm:leading-[1.15] scroll-reveal reveal-duration-heading reveal-delay-1 ${introInView ? "scroll-reveal-active" : ""
+              }`}
           >
             Setiap Bisnis Punya Cerita. Website Membantu Menunjukkannya.
           </h2>
           <p
-            className={`mt-4 max-w-2xl text-base leading-relaxed text-[#667085] sm:text-lg scroll-reveal reveal-duration-body reveal-delay-2 ${
-              introInView ? "scroll-reveal-active" : ""
-            }`}
+            className={`mt-4 max-w-2xl text-base leading-relaxed text-[#667085] sm:text-lg scroll-reveal reveal-duration-body reveal-delay-2 ${introInView ? "scroll-reveal-active" : ""
+              }`}
           >
             Jelajahi berbagai konsep dan karya website yang dirancang untuk
             memperkuat identitas bisnis, menampilkan keunggulan, dan memberikan
@@ -263,9 +275,8 @@ export function PortfolioSection() {
         {/* Functional Category Filter Tabs */}
         <div
           ref={tabsRef}
-          className={`mt-10 sm:mt-12 scroll-reveal reveal-duration-body reveal-delay-1 ${
-            tabsInView ? "scroll-reveal-active" : ""
-          }`}
+          className={`mt-10 sm:mt-12 scroll-reveal reveal-duration-body reveal-delay-1 ${tabsInView ? "scroll-reveal-active" : ""
+            }`}
         >
           <div
             role="tablist"
@@ -283,11 +294,10 @@ export function PortfolioSection() {
                   aria-selected={isActive}
                   aria-controls="portfolio-gallery-panel"
                   onClick={() => setSelectedCategory(category)}
-                  className={`inline-flex h-9 items-center rounded-lg px-4 text-[13.5px] font-medium transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 ${
-                    isActive
+                  className={`inline-flex h-9 items-center rounded-lg px-4 text-[13.5px] font-medium transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2 ${isActive
                       ? "bg-[#172033] text-white shadow-xs"
                       : "border border-[#E5EAF1] bg-white text-[#667085] hover:border-slate-300 hover:bg-slate-50 hover:text-[#172033]"
-                  }`}
+                    }`}
                 >
                   {category}
                 </button>
